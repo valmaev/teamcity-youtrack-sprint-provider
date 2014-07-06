@@ -5,8 +5,8 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.valmaev.teamcity.youtrack</groupId>
-    <artifactId>sprinter</artifactId>
+    <groupId>org.valmaev.teamcity</groupId>
+    <artifactId>teamcity-youtrack-sprint-provider</artifactId>
     <version>0.1</version>
 
     <properties>

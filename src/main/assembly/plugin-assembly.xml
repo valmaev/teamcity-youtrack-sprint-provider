@@ -13,7 +13,7 @@
 
     <files>
         <file>
-            <source>target/teamcity-plugin.xml</source>
+            <source>${basedir}/teamcity-plugin.xml</source>
             <outputDirectory>/</outputDirectory>
         </file>
     </files>

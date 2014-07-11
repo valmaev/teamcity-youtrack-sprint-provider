@@ -5,6 +5,6 @@
                            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
        default-autowire="constructor">
 
-    <bean class="org.valmaev.teamcity.server.YoutrackSprintProvider" />
+    <bean class="org.valmaev.teamcity.server.YoutrackSprintBuildParametersProvider" />
 
 </beans>

@@ -9,7 +9,7 @@ import java.util.Map;
 
 public class YoutrackSprintBuildParametersProvider extends AbstractBuildParametersProvider {
 
-    public static String PARAMETER_NAME_FORMAT = "youtrack.%s.sprint";
+    public static final String PARAMETER_NAME_FORMAT = "youtrack.%s.sprint";
 
     @NotNull
     private final String _projectId;

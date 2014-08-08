@@ -9,6 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.hasEntry;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static org.valmaev.teamcity.server.YoutrackSprintBuildParametersProvider.PARAMETER_NAME_FORMAT;
 
 public class YoutrackSprintBuildParametersProviderTestCase {
 
@@ -33,8 +34,6 @@ public class YoutrackSprintBuildParametersProviderTestCase {
 
         Map<String, String> actual = sut.getParameters(buildDummy, modeDummy);
 
-        assertThat(actual, hasEntry(
-                String.format(YoutrackSprintBuildParametersProvider.PARAMETER_NAME_FORMAT, projectId),
-                sprintName));
+        assertThat(actual, hasEntry(String.format(PARAMETER_NAME_FORMAT, projectId), sprintName));
     }
 }

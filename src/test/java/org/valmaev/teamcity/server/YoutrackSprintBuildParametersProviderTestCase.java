@@ -2,7 +2,10 @@ package org.valmaev.teamcity.server;
 
 import jetbrains.buildServer.serverSide.SBuild;
 import org.testng.annotations.Test;
+import org.valmaev.teamcity.server.domain.SprintNameProvider;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Map;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,21 +17,22 @@ import static org.valmaev.teamcity.server.YoutrackSprintBuildParametersProvider.
 public class YoutrackSprintBuildParametersProviderTestCase {
 
     private static YoutrackSprintBuildParametersProvider createSystemUnderTest(
-            String projectId,
+            Iterable<String> projectIds,
             SprintNameProvider sprintNameProvider) {
         return new YoutrackSprintBuildParametersProvider(
-                projectId == null ? "" : projectId,
+                projectIds == null ? new HashSet<String>() : projectIds,
                 sprintNameProvider == null ? mock(SprintNameProvider.class) : sprintNameProvider
         );
     }
 
     @Test
-    public void getParameters_always_shouldGetCurrentSprintNameFromProvider() {
+    public void getParameters_always_shouldGetCurrentSprintNamesFromProvider() {
         final String projectId = "foo";
         final String sprintName = "bar";
         SprintNameProvider sprintNameProviderStub = mock(SprintNameProvider.class);
         when(sprintNameProviderStub.getCurrentSprintName(projectId)).thenReturn(sprintName);
-        YoutrackSprintBuildParametersProvider sut = createSystemUnderTest(projectId, sprintNameProviderStub);
+        YoutrackSprintBuildParametersProvider sut =
+                createSystemUnderTest(Arrays.asList(projectId), sprintNameProviderStub);
         final SBuild buildDummy = mock(SBuild.class);
         final boolean modeDummy = false;
 

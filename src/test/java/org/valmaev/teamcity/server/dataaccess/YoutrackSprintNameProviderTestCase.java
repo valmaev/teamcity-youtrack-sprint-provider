@@ -46,14 +46,11 @@ public class YoutrackSprintNameProviderTestCase {
         WebTarget targetStub = mock(WebTarget.class);
         Builder builderStub = mock(Builder.class);
 
-        when(result.target(any(URI.class)))
-                .thenReturn(targetStub);
-        when(targetStub.path(any(String.class)))
-                .thenReturn(targetStub);
-        when(targetStub.request(any(String.class)))
-                .thenReturn(builderStub);
-        when(builderStub.get(new GenericType<List<Sprint>>() {}))
-                .thenReturn(responseContent);
+        when(result.target(any(URI.class))).thenReturn(targetStub);
+        when(targetStub.path(any(String.class))).thenReturn(targetStub);
+        when(targetStub.request(any(String.class))).thenReturn(builderStub);
+        when(builderStub.get(new GenericType<List<Sprint>>() {})).thenReturn(responseContent);
+
         return result;
     }
 
@@ -112,7 +109,6 @@ public class YoutrackSprintNameProviderTestCase {
     @DataProvider
     @SuppressWarnings("unchecked")
     public Object[][] getCurrentSprintNameTestData() {
-
         Comparator<Sprint> dummyComparator = (Comparator<Sprint>) mock(Comparator.class);
         when(dummyComparator.compare(any(Sprint.class), any(Sprint.class))).thenReturn(-1);
 

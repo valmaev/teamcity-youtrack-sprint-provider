@@ -8,12 +8,9 @@ import java.util.Date;
 
 import static org.mockito.Mockito.mock;
 import static org.testng.Assert.assertEquals;
+import static org.valmaev.teamcity.server.domain.SprintFactory.createSprint;
 
 public class SprintTestCase {
-
-    private static Sprint createSystemUnderTest(String name, Date releaseDate) {
-        return new Sprint(name, releaseDate);
-    }
 
     @Test(dataProvider = "equalsTestData")
     public void equals_always_shouldReturnCorrectResult(Sprint sut, Object toCompare, boolean expected) {
@@ -22,7 +19,7 @@ public class SprintTestCase {
 
     @DataProvider
     public Object[][] equalsTestData() {
-        Object[][] nullCase = {{createSystemUnderTest("1.0", new Date()), null, false}};
+        Object[][] nullCase = {{createSprint(), null, false}};
         return ObjectArrays.concat(nullCase, hashCodeTestData(), Object[].class);
     }
 
@@ -35,10 +32,10 @@ public class SprintTestCase {
     @DataProvider
     public Object[][] hashCodeTestData() {
         return new Object[][]{
-                new Object[]{createSystemUnderTest("1.0", new Date()), createSystemUnderTest("1.0", new Date()), true},
-                new Object[]{createSystemUnderTest("1.0", new Date()), createSystemUnderTest("1.1", new Date()), false},
-                new Object[]{createSystemUnderTest("1.0", new Date(1)), createSystemUnderTest("1.0", new Date(2)), false},
-                new Object[]{createSystemUnderTest("1.0", new Date()), mock(Sprint.class), false},
+                new Object[]{createSprint(), createSprint(), true},
+                new Object[]{createSprint("1.0"), createSprint("1.1"), false},
+                new Object[]{createSprint(new Date(1)), createSprint(new Date(2)), false},
+                new Object[]{createSprint("1.0", new Date()), mock(Sprint.class), false},
         };
     }
 }

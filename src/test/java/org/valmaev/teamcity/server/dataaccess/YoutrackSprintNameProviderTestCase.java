@@ -3,7 +3,6 @@ package org.valmaev.teamcity.server.dataaccess;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import org.valmaev.teamcity.server.domain.Sprint;
-import org.valmaev.teamcity.server.domain.SprintReleaseDateComparator;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Invocation.Builder;
@@ -12,10 +11,14 @@ import javax.ws.rs.core.GenericType;
 import javax.ws.rs.core.MediaType;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 import static org.mockito.Mockito.*;
 import static org.testng.Assert.assertEquals;
+import static org.valmaev.teamcity.server.domain.SprintFactory.createSprint;
 
 public class YoutrackSprintNameProviderTestCase {
 
@@ -107,16 +110,19 @@ public class YoutrackSprintNameProviderTestCase {
     }
 
     @DataProvider
+    @SuppressWarnings("unchecked")
     public Object[][] getCurrentSprintNameTestData() {
+
+        Comparator<Sprint> dummyComparator = (Comparator<Sprint>) mock(Comparator.class);
+        when(dummyComparator.compare(any(Sprint.class), any(Sprint.class))).thenReturn(-1);
+
         return new Object[][]{
                 new Object[]{new ArrayList<Sprint>(), null, ""},
-                new Object[]{Arrays.asList(new Sprint("foo", new Date())), null, "foo"},
+                new Object[]{Arrays.asList(createSprint("foo")), null, "foo"},
                 new Object[]{
-                        Arrays.asList(
-                                new Sprint("foo", new Date(1)),
-                                new Sprint("bar", new Date(2))),
-                        new SprintReleaseDateComparator(),
-                        "foo"
+                        Arrays.asList(createSprint("foo"), createSprint("bar")),
+                        dummyComparator,
+                        "bar"
                 }
         };
     }

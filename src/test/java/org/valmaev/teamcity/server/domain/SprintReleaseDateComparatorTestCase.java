@@ -6,14 +6,9 @@ import org.testng.annotations.Test;
 import java.util.Date;
 
 import static org.testng.Assert.assertEquals;
+import static org.valmaev.teamcity.server.domain.SprintFactory.createSprint;
 
 public class SprintReleaseDateComparatorTestCase {
-
-    private static Sprint createSprint() {return createSprint(new Date());}
-
-    private static Sprint createSprint(Date releaseDate) {
-        return new Sprint("anyName", releaseDate);
-    }
 
     @Test(dataProvider = "compareTestData")
     public void compare_always_shouldReturnCorrectResult(Sprint first, Sprint second, int expected) {

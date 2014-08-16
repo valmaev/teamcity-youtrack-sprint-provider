@@ -5,6 +5,32 @@
                            http://www.springframework.org/schema/beans/spring-beans-2.5.xsd"
        default-autowire="constructor">
 
-    <bean class="org.valmaev.teamcity.server.YoutrackSprintBuildParametersProvider" />
+    <bean class="org.valmaev.teamcity.server.YoutrackSprintBuildParametersProvider">
+        <constructor-arg index="0">
+            <list>
+                <value>HELLOWORLD</value>
+            </list>
+        </constructor-arg>
+        <constructor-arg index="1" ref="sprintNameProvider" />
+    </bean>
+    <bean class="org.valmaev.teamcity.server.dataaccess.YoutrackSprintNameProvider"
+          id="sprintNameProvider">
+        <constructor-arg ref="restClient" />
+        <constructor-arg ref="youtrackUri" />
+        <constructor-arg ref="sprintComparator" />
+    </bean>
+    <bean class="org.valmaev.teamcity.server.dataaccess.ClientFactory"
+          id="clientFactory" scope="prototype" />
+    <bean class="javax.ws.rs.client.Client" id="restClient"
+          factory-bean="clientFactory"
+          factory-method="create">
+        <constructor-arg index="0" value="login" />
+        <constructor-arg index="1" value="password" />
+    </bean>
+    <bean class="java.net.URI" id="youtrackUri">
+        <constructor-arg index="0" value="http://example.com" />
+    </bean>
+    <bean class="org.valmaev.teamcity.server.domain.SprintReleaseDateComparator"
+          id="sprintComparator" />
 
 </beans>

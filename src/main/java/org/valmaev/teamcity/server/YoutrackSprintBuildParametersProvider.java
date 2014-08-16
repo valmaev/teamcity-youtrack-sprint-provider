@@ -18,8 +18,8 @@ public class YoutrackSprintBuildParametersProvider extends AbstractBuildParamete
     private final SprintNameProvider _sprintNameProvider;
 
     public YoutrackSprintBuildParametersProvider(
-             @NotNull Iterable<String> projectIds,
-             @NotNull SprintNameProvider sprintNameProvider) {
+            @NotNull Iterable<String> projectIds,
+            @NotNull SprintNameProvider sprintNameProvider) {
         _projectIds = projectIds;
         _sprintNameProvider = sprintNameProvider;
     }

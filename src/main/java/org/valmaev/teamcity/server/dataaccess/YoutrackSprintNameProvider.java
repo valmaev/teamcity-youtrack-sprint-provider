@@ -38,6 +38,9 @@ public class YoutrackSprintNameProvider implements SprintNameProvider {
 
     @Override
     public String getCurrentSprintName(String projectId) {
+        if (projectId == null)
+            throw new IllegalArgumentException("Parameter 'projectId' can't be null");
+
         List<Sprint> sprints = _restClient.target(_connection.getAddress())
                 .path("/rest/admin/project/" + projectId + "/version")
                 .request(MediaType.APPLICATION_JSON)

@@ -1,11 +1,11 @@
 package org.valmaev.teamcity.server.domain;
 
 import com.google.common.collect.ObjectArrays;
+import com.google.common.collect.Sets;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.net.URI;
-import java.net.URISyntaxException;
 
 import static org.mockito.Mockito.mock;
 import static org.testng.Assert.assertEquals;
@@ -21,8 +21,7 @@ public class IssueTrackerConnectionTestCase {
     }
 
     @DataProvider
-    public Object[][] equalsTestData()
-            throws URISyntaxException {
+    public Object[][] equalsTestData() {
         Object[][] nullCase = {{createConnection(), null, false}};
         return ObjectArrays.concat(nullCase, hashCodeTestData(), Object[].class);
     }
@@ -37,13 +36,12 @@ public class IssueTrackerConnectionTestCase {
     }
 
     @DataProvider
-    public Object[][] hashCodeTestData()
-            throws URISyntaxException {
+    public Object[][] hashCodeTestData() {
         return new Object[][]{
                 new Object[]{createConnection(), createConnection(), true},
                 new Object[]{
-                        createConnection(new URI("http://foo.com")),
-                        createConnection(new URI("http://bar.com")),
+                        createConnection(URI.create("http://foo.com")),
+                        createConnection(URI.create("http://bar.com")),
                         false},
                 new Object[]{
                         createConnection("foo", "bar"),
@@ -53,7 +51,10 @@ public class IssueTrackerConnectionTestCase {
                         createConnection(),
                         mock(IssueTrackerConnection.class),
                         false},
+                new Object[]{
+                        createConnection(Sets.newHashSet("FOO", "BAR")),
+                        createConnection(Sets.newHashSet("FOO", "BAR", "BAZ")),
+                        false},
         };
     }
-
 }

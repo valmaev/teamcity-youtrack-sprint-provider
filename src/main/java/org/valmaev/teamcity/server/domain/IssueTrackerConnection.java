@@ -70,7 +70,8 @@ public class IssueTrackerConnection {
     public String toString() {
         return "IssueTrackerConnection{" +
                 "Address=" + _address +
-                ",Login='" + _login + '\'' +
+                ", Login='" + _login + '\'' +
+                ", IssueIds=" + _issueIds +
                 '}';
     }
 }

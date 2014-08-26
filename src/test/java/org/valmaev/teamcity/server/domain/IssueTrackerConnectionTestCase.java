@@ -55,6 +55,10 @@ public class IssueTrackerConnectionTestCase {
                         createConnection(Sets.newHashSet("FOO", "BAR")),
                         createConnection(Sets.newHashSet("FOO", "BAR", "BAZ")),
                         false},
+                new Object[]{
+                        createConnection(Sets.newHashSet("FOO", "BAR")),
+                        createConnection(Sets.newHashSet("FOO", "BAR")),
+                        true}
         };
     }
 }

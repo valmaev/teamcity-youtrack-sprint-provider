@@ -10,15 +10,15 @@ public class IssueTrackerConnectionFactory {
         return new IssueTrackerConnection(URI.create("http://foo.com"), "bar", "baz", new HashSet<String>());
     }
 
-    public static IssueTrackerConnection createConnection(URI address) {
-        return new IssueTrackerConnection(address, "bar", "baz", new HashSet<String>());
+    public static IssueTrackerConnection createConnection(URI host) {
+        return new IssueTrackerConnection(host, "bar", "baz", new HashSet<String>());
     }
 
     public static IssueTrackerConnection createConnection(String login, String password) {
         return new IssueTrackerConnection(URI.create("http://foo.com"), login, password, new HashSet<String>());
     }
 
-    public static IssueTrackerConnection createConnection(Set<String> issueIds) {
-        return new IssueTrackerConnection(URI.create("http://foo.com"), "bar", "baz", issueIds);
+    public static IssueTrackerConnection createConnection(Set<String> projectIds) {
+        return new IssueTrackerConnection(URI.create("http://foo.com"), "bar", "baz", projectIds);
     }
 }

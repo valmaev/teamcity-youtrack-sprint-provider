@@ -5,29 +5,33 @@ import java.util.Collections;
 import java.util.Set;
 
 public class IssueTrackerConnection {
-    private final URI _address;
+    private final URI _host;
     private final String _login;
     private final String _password;
-    private final Set<String> _issueIds;
+    private final Set<String> _projectIds;
 
-    public IssueTrackerConnection(URI address, String login, String password, Set<String> issueIds) {
-        if (address == null)
-            throw new IllegalArgumentException("Parameter 'address' can't be null");
+    public IssueTrackerConnection(
+            URI host,
+            String login,
+            String password,
+            Set<String> projectIds) {
+        if (host == null)
+            throw new IllegalArgumentException("Parameter 'host' can't be null");
         if (login == null)
             throw new IllegalArgumentException("Parameter 'login' can't be null");
         if (password == null)
             throw new IllegalArgumentException("Parameter 'password' can't be null");
-        if (issueIds == null)
-            throw new IllegalArgumentException("Parameter 'issueIds' can't be null");
+        if (projectIds == null)
+            throw new IllegalArgumentException("Parameter 'projectIds' can't be null");
 
-        _address = address;
+        _host = host;
         _login = login;
         _password = password;
-        _issueIds = Collections.unmodifiableSet(issueIds);
+        _projectIds = Collections.unmodifiableSet(projectIds);
     }
 
-    public URI getAddress() {
-        return _address;
+    public URI getHost() {
+        return _host;
     }
 
     public String getLogin() {
@@ -38,8 +42,8 @@ public class IssueTrackerConnection {
         return _password;
     }
 
-    public Set<String> getIssueIds() {
-        return _issueIds;
+    public Set<String> getProjectIds() {
+        return _projectIds;
     }
 
     @Override
@@ -51,27 +55,27 @@ public class IssueTrackerConnection {
 
         IssueTrackerConnection that = (IssueTrackerConnection) o;
 
-        return _address.equals(that._address)
+        return _host.equals(that._host)
                 && _login.equals(that._login)
                 && _password.equals(that._password)
-                && _issueIds.equals(that._issueIds);
+                && _projectIds.equals(that._projectIds);
     }
 
     @Override
     public int hashCode() {
-        int result = _address.hashCode();
+        int result = _host.hashCode();
         result = 31 * result + _login.hashCode();
         result = 31 * result + _password.hashCode();
-        result = 31 * result + _issueIds.hashCode();
+        result = 31 * result + _projectIds.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
         return "IssueTrackerConnection{" +
-                "Address=" + _address +
+                "Host=" + _host +
                 ", Login='" + _login + '\'' +
-                ", IssueIds=" + _issueIds +
+                ", ProjectIds=" + _projectIds +
                 '}';
     }
 }

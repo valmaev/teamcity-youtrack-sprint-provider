@@ -1,5 +1,7 @@
 package org.valmaev.teamcity.server.domain;
 
+import java.util.Map;
+
 public interface SprintNameProvider {
-    String getCurrentSprintName(String projectId);
+    Map<String, String> getCurrentSprintNames();
 }

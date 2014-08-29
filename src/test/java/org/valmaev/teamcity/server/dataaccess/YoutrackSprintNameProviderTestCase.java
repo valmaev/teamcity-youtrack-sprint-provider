@@ -67,7 +67,7 @@ public class YoutrackSprintNameProviderTestCase {
         WebTarget targetStub = mock(WebTarget.class);
         Builder result = mock(Builder.class);
 
-        when(clientTestDouble.target(connection.getAddress()))
+        when(clientTestDouble.target(connection.getHost()))
                 .thenReturn(targetStub);
         when(targetStub.path("/rest/admin/project/" + projectId + "/version"))
                 .thenReturn(targetStub);

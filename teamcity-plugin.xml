@@ -4,7 +4,7 @@
     <info>
         <name>teamcity-youtrack-sprint-provider</name>
         <display-name>YouTrack Sprint Provider</display-name>
-        <version>0.1</version>
+        <version>0.3</version>
         <vendor>
             <name>Vladimir Almaev</name>
             <url>https://github.com/valmaev/teamcity-youtrack-sprint-provider</url>
